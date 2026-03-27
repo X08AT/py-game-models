@@ -22,8 +22,10 @@ def main() -> None:
         for skill_info in skills_list:
             Skill.objects.get_or_create(
                 name=skill_info.get("name"),
-                race=race,
-                defaults={"bonus": skill_info.get("bonus", 0)}
+                defaults={
+                    "race": race,
+                    "bonus": skill_info.get("bonus", "")  # Use string "" for CharField
+                }
             )
 
         guild_data = data.get("guild")

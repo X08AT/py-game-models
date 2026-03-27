@@ -23,7 +23,7 @@ def main() -> None:
             Skill.objects.get_or_create(
                 name=skill_info.get("name"),
                 race=race,
-                defaults={"bonus": skill_info.get("bonus")}
+                defaults={"bonus": skill_info.get("bonus", 0)}
             )
 
         guild_data = data.get("guild")
@@ -31,7 +31,7 @@ def main() -> None:
         if guild_data:
             guild, _ = Guild.objects.get_or_create(
                 name=guild_data.get("name"),
-                defaults={"description": guild_data.get("description")}
+                defaults={"description": guild_data.get("description", "")}
             )
 
         Player.objects.get_or_create(
